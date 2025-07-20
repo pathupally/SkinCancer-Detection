@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Skin Cancer Detection</h1>
+            <p class="subtitle">Upload an image for AI-powered skin lesion analysis</p>
+            <div class="disclaimer">
+                <strong>⚠️ Medical Disclaimer:</strong> This tool is for educational purposes only.
+                Always consult with a qualified dermatologist for professional medical advice.
+            </div>
+        </header>
+
+        <div class="upload-section">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert">
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <form action="/predict" method="POST" enctype="multipart/form-data" class="upload-form">
+                <div class="file-input-wrapper">
+                    <input type="file" id="file" name="file" accept="image/*" required>
+                    <label for="file" class="file-input-label">
+                        <div class="upload-icon">📷</div>
+                        <div class="upload-text">Choose Image</div>
+                        <div class="upload-subtext">PNG, JPG, JPEG, GIF (max 16MB)</div>
+                    </label>
+                </div>
+
+                <div class="preview-container" id="preview-container" style="display: none;">
+                    <img id="preview-image" src="" alt="Preview">
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn" disabled>
+                    <span class="btn-text">Analyze Image</span>
+                    <span class="btn-loading" style="display: none;">Analyzing...</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="info-section">
+            <h2>About This Tool</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎯 Accuracy</h3>
+                    <p>AI model trained on thousands of dermatology images</p>
+                </div>
+                <div class="info-card">
+                    <h3>⚡ Speed</h3>
+                    <p>Get results in seconds, not weeks</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔒 Privacy</h3>
+                    <p>Images are processed locally and not stored</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file');
+        const submitBtn = document.getElementById('submit-btn');
+        const previewContainer = document.getElementById('preview-container');
+        const previewImage = document.getElementById('preview-image');
+        const uploadForm = document.querySelector('.upload-form');
+
+        fileInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Enable submit button
+                submitBtn.disabled = false;
+
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        uploadForm.addEventListener('submit', function () {
+            const btnText = document.querySelector('.btn-text');
+            const btnLoading = document.querySelector('.btn-loading');
+
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline';
+            submitBtn.disabled = true;
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result - Skin Cancer Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Analysis Result</h1>
+            <a href="{{ url_for('index') }}" class="back-btn">← Analyze Another Image</a>
+        </header>
+
+        <div class="result-section">
+            <div class="result-grid">
+                <div class="image-panel">
+                    <h2>Uploaded Image</h2>
+                    <div class="uploaded-image">
+                        <img src="data:image/jpeg;base64,{{ image_data }}" alt="{{ filename }}">
+                    </div>
+                </div>
+
+                <div class="analysis-panel">
+                    <h2>Analysis Results</h2>
+
+                    <div class="prediction-result">
+                        <div class="prediction-label 
+                            {% if result.prediction == 'Malignant' %}malignant{% else %}benign{% endif %}">
+                            {{ result.prediction }}
+                        </div>
+                        <div class="confidence-score">
+                            Confidence: {{ "%.1f" | format(result.confidence * 100) }}%
+                        </div>
+                    </div>
+
+                    <div class="probability-breakdown">
+                        <h3>Probability Breakdown</h3>
+                        <div class="prob-item">
+                            <span class="prob-label benign">Benign</span>
+                            <div class="prob-bar">
+                                <!-- FIX 1 & 2: Added quotes around style value -->
+                                <div class="prob-fill benign" style="width: {{ result.probability_benign * 100 }}%;">
+                                </div>
+                            </div>
+                            <span class="prob-value">{{ "%.1f" | format(result.probability_benign * 100) }}%</span>
+                        </div>
+                        <div class="prob-item">
+                            <span class="prob-label malignant">Malignant</span>
+                            <div class="prob-bar">
+                                <!-- FIX 3 & 4: Added quotes and proper closing -->
+                                <div class="prob-fill malignant"
+                                    style="width: {{ result.probability_malignant * 100 }}%;"></div>
+                            </div>
+                            <span class="prob-value">{{ "%.1f" | format(result.probability_malignant * 100) }}%</span>
+                        </div>
+                    </div>
+
+                    <div class="recommendations">
+                        <h3>Recommendations</h3>
+                        {% if result.prediction == 'Malignant' %}
+                        <div class="recommendation urgent">
+                            <strong>⚠️ Urgent:</strong> Please consult a dermatologist immediately.
+                            This analysis suggests potential concern that requires professional evaluation.
+                        </div>
+                        {% else %}
+                        <div class="recommendation normal">
+                            <strong>✅ Good News:</strong> The analysis suggests this may be benign.
+                            However, continue regular skin checks and consult a dermatologist if you notice any changes.
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="{{ url_for('index') }}" class="btn-secondary">Analyze Another Image</a>
+            <button onclick="window.print()" class="btn-primary">Print Results</button>
+        </div>
+
+        <div class="disclaimer">
+            <strong>Important:</strong> This AI analysis is not a substitute for professional medical diagnosis.
+            Always consult with a qualified healthcare provider for proper evaluation and treatment.
+        </div>
+    </div>
+</body>
+
+</html>

@@ -27,10 +27,11 @@ def sort_images(df, data_dir='data'):
         random_state=42
     )
     
+
     val_df, test_df = train_test_split(
-        df,
+        test_df,
         test_size=0.5,
-        stratify=df['diagnosis_1'],
+        stratify=test_df['diagnosis_1'],
         random_state=42
     )
     

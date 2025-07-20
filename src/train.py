@@ -23,7 +23,7 @@ logger = setup_logger()
 class EfficientNetTrainer:
     def __init__(self, config):
         self.config = config
-        self.device = torch.device('mps' if torch.cuda.is_available() else 'cpu')
+        self.device = torch.device('mps' if torch.mps.is_available() else 'cpu')
         
         logging.info(f"Using device: {self.device}")
         
