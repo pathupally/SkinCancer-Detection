@@ -1,0 +1,1 @@
+chmod +x data_pipeline/data_request.sh

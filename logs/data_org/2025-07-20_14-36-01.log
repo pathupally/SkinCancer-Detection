@@ -1,0 +1,5 @@
+2025-07-20 14:36:01,369 [INFO] [data_org.py] Loading metadata
+2025-07-20 14:36:01,387 [INFO] [data_org.py] Starting image sorting
+2025-07-20 14:36:01,396 [INFO] [data_org.py] Processing train split with 7781 images
+2025-07-20 14:36:06,113 [INFO] [data_org.py] Processing val split with 4863 images
+2025-07-20 14:36:08,756 [INFO] [data_org.py] Processing test split with 4864 images

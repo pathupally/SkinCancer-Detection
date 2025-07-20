@@ -1,0 +1,30 @@
+2025-07-20 14:49:51,175 [INFO] [train.py] Training Configuration:
+2025-07-20 14:49:51,175 [INFO] [train.py] ----------------------------------------
+2025-07-20 14:49:51,175 [INFO] [train.py] model_name: efficientnet_b0
+2025-07-20 14:49:51,175 [INFO] [train.py] freeze_backbone: False
+2025-07-20 14:49:51,176 [INFO] [train.py] epochs: 5
+2025-07-20 14:49:51,176 [INFO] [train.py] batch_size: 32
+2025-07-20 14:49:51,176 [INFO] [train.py] learning_rate: 0.0001
+2025-07-20 14:49:51,176 [INFO] [train.py] weight_decay: 0.0001
+2025-07-20 14:49:51,176 [INFO] [train.py] optimizer: adamw
+2025-07-20 14:49:51,176 [INFO] [train.py] scheduler: cosine
+2025-07-20 14:49:51,176 [INFO] [train.py] step_size: 10
+2025-07-20 14:49:51,176 [INFO] [train.py] gamma: 0.1
+2025-07-20 14:49:51,176 [INFO] [train.py] data_dir: data
+2025-07-20 14:49:51,176 [INFO] [train.py] img_size: 224
+2025-07-20 14:49:51,176 [INFO] [train.py] num_workers: 4
+2025-07-20 14:49:51,176 [INFO] [train.py] save_interval: 10
+2025-07-20 14:49:51,176 [INFO] [train.py] model_save_dir: models
+2025-07-20 14:49:51,176 [INFO] [train.py] ----------------------------------------
+2025-07-20 14:49:51,176 [INFO] [train.py] Using device: cpu
+2025-07-20 14:49:51,225 [INFO] [_builder.py] Loading pretrained weights from Hugging Face hub (timm/efficientnet_b0.ra_in1k)
+2025-07-20 14:49:51,946 [INFO] [_hub.py] [timm/efficientnet_b0.ra_in1k] Safe alternative available for 'pytorch_model.bin' (as 'model.safetensors'). Loading weights using safetensors.
+2025-07-20 14:49:51,962 [INFO] [_builder.py] Missing keys (classifier.weight, classifier.bias) discovered while loading pretrained weights. This is expected if model is being adapted.
+2025-07-20 14:49:51,964 [INFO] [train.py] Created efficientnet_b0 with 4010110 trainable parameters
+2025-07-20 14:49:51,965 [INFO] [train.py] Starting training...
+2025-07-20 14:49:51,965 [INFO] [train.py] Configuration: {'model_name': 'efficientnet_b0', 'freeze_backbone': False, 'epochs': 5, 'batch_size': 32, 'learning_rate': 0.0001, 'weight_decay': 0.0001, 'optimizer': 'adamw', 'scheduler': 'cosine', 'step_size': 10, 'gamma': 0.1, 'data_dir': 'data', 'img_size': 224, 'num_workers': 4, 'save_interval': 10, 'model_save_dir': 'models'}
+2025-07-20 14:49:52,002 [INFO] [train.py] Train samples: 7781
+2025-07-20 14:49:52,002 [INFO] [train.py] Validation samples: 4863
+2025-07-20 14:49:52,003 [INFO] [train.py] Test samples: 4864
+2025-07-20 14:49:52,003 [INFO] [train.py] 
+Epoch 1/5
