@@ -29,7 +29,7 @@ This project is a deep learning pipeline and web application for classifying ski
 
 3. **Train the model**
    ```bash
-   python3 config/training_config.py [b0|b3|b5|finetune]
+   python3 src/train.py
    ```
    - Trains EfficientNet (B0, B3, B5, or fine-tune) on the organized dataset.
    - Saves best model to `models/best_model.pth` and logs results/plots.
